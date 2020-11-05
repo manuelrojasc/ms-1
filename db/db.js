@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const uri = "mongodb://root:root@localhost:27017/cursodb?authSource=admin";
+const uri = "mongodb://root:root@mongo:27017/registrodb?authSource=admin";
 
 mongoose.connect(uri, {
         useNewUrlParser: true,
@@ -9,12 +9,13 @@ mongoose.connect(uri, {
     .catch(err => console.log(err))
 
 
-const cursoModel = mongoose.model("cursos", {
-    codigo: String,
-    nombre: String,
-    creditos: String
+const registroModel = mongoose.model("registros", {
+    id_alumno: { type: String, required: true },
+    id_curso: { type: String, required: true },
+    asistencia: { type: String, required: true },
+    registro: { type: Date, default: Date.now }
 });
 
 module.exports = {
-    cursoModel
+    registroModel
 }
